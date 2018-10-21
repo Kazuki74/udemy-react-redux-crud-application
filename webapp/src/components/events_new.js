@@ -44,3 +44,13 @@ class EventsNew extends Component {
 // const mapDispatchToProps = ({ postEvents })
 
 export default connect(null, null)(EventsNew)
+const validate = values => {
+  let errors = {}
+  if (!values.title) errors.title = 'Enter a title.'
+  if (!values.body) errors.body = 'Enter a body.'
+  return errors
+}
+
+export default connect(null, null)(
+  reduxForm({validate, form: 'eventsNewForm'})(EventsNew)
+)
