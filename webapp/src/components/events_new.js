@@ -6,6 +6,15 @@ import { reduxForm, Field } from 'redux-form';
 // import { postEvents } from '../actions'
 
 class EventsNew extends Component {
+  renderField(field) {
+    const { input, label, type, meta: { touched, error } } = field
+    return (
+      <div>
+        <input {...input} placeholder={label} type={type}/>
+        {touched && error && <span>{error}</span>}
+      </div>
+    )
+  }
   render() {
 
     return (
