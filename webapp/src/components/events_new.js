@@ -20,6 +20,18 @@ class EventsNew extends Component {
     return (
       <React.Fragment>
         <p>Hi!</p>
+        <form>
+          <div>
+            <Field label="Title" name="title" type="text" component={this.renderField} />
+          </div>
+          <div>
+            <Field label="Body" name="body" type="text" component={this.renderField} />
+          </div>
+          <div>
+            <input type="submit" value="submit" disabled={false} />
+          </div>
+          <Link to="/">Submit</Link>
+        </form>
       </React.Fragment>
     )
   }
