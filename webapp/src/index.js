@@ -17,11 +17,10 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
     	<Switch>
-    		<Route exact path="/" components={EventsIndex} />
-    		<Route exact path="/events/new" components={EventsNew} />
+    		<Route exact path="/" component={EventsIndex} />
+    		<Route exact path="/events/new" component={EventsNew} />
     	</Switch>
     </BrowserRouter>
-    <EventsIndex />
   </Provider>,
   document.getElementById('root')
 );
