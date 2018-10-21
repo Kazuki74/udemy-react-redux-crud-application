@@ -19,7 +19,6 @@ class EventsNew extends Component {
 
     return (
       <React.Fragment>
-        <p>Hi!</p>
         <form>
           <div>
             <Field label="Title" name="title" type="text" component={this.renderField} />
