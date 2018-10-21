@@ -3,9 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
 
-// import { postEvents } from '../actions'
+import { postEvent } from '../actions'
 
 class EventsNew extends Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
   renderField(field) {
     const { input, label, type, meta: { touched, error } } = field
     return (
@@ -15,11 +20,18 @@ class EventsNew extends Component {
       </div>
     )
   }
-  render() {
 
+  async onSubmit(values) {
+    await this.props.postEvent(values)
+    this.props.history.push('/')
+    console.log(this.props.history)
+  }
+
+  render() {
+    const { handleSubmit } = this.props
     return (
       <React.Fragment>
-        <form>
+        <form onSubmit={handleSubmit(this.onSubmit)}>
           <div>
             <Field label="Title" name="title" type="text" component={this.renderField} />
           </div>
@@ -29,7 +41,7 @@ class EventsNew extends Component {
           <div>
             <input type="submit" value="submit" disabled={false} />
           </div>
-          <Link to="/">Submit</Link>
+          <Link to="/">Cancel</Link>
         </form>
       </React.Fragment>
     )
@@ -41,7 +53,7 @@ class EventsNew extends Component {
 //   decrement: () => dispatch(decrement())
 // })
 
-// const mapDispatchToProps = ({ postEvents })
+const mapDispatchToProps = ({ postEvent })
 
 const validate = values => {
   let errors = {}
@@ -50,6 +62,6 @@ const validate = values => {
   return errors
 }
 
-export default connect(null, null)(
+export default connect(null, mapDispatchToProps)(
   reduxForm({validate, form: 'eventsNewForm'})(EventsNew)
 )
